@@ -1,19 +1,22 @@
-const scrollController = new (require("scroll-controller"))();
-const battery = require("./src/battery");
-
-const GAME_STATES = {
-  GAME: "GAME",
-  STOP: "STOP",
-  RESTART: "RESTART",
-  PAUSE: "PAUSE",
-};
+const events = require('events');
+const em = new events.EventEmitter();
+const scrollController = new (require('scroll-controller'))();
+const battery = require('./src/battery');
+const bluetoothService = require('./src/ble');
 
 const init = async () => {
-  const width = 17;
-  const height = 7;
-  const field = Array(height).fill(Array(width).fill(0));
+  await battery((values) => em.emit('BATTERY_UPDATE', values));
+  const onBatteryUpdate = (listener) =>
+    em.addListener('BATTERY_UPDATE', listener);
 
-  console.log(field)
+  await scrollController.init();
+
+  const setMatrix = (array) => {
+    console.log(array);
+    scrollController.display(array);
+  };
+
+  await bluetoothService(onBatteryUpdate, setMatrix);
 };
 
 init();
