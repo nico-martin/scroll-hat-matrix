@@ -29,6 +29,7 @@ module.exports = (setMatrix) => {
           callback(result, data);
         },
         onWriteRequest: (data, offset, withoutResponse, callback) => {
+          console.log('WRITE', data.length, 7 * 17);
           if (data.length !== 7 * 17) {
             console.log('ERROR: invalid data', data);
             callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
