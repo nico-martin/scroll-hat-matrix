@@ -11,11 +11,7 @@ const init = async () => {
 
   await scrollController.init();
 
-  const setMatrix = (array) => {
-    console.log(array);
-    scrollController.display(array);
-  };
-
+  const setMatrix = (array) => scrollController.display(array);
   await bluetoothService(onBatteryUpdate, setMatrix);
 };
 
