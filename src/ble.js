@@ -12,7 +12,11 @@ const bluetoothService = async (onBatteryUpdate, setMatrix) => {
 
   bleno.on('stateChange', (state) => {
     if (state === 'poweredOn') {
-      bleno.startAdvertising('Scroll Hat Matrix', [device.uuid, game.uuid]);
+      bleno.startAdvertising('Scroll Hat Matrix', [
+        device.uuid,
+        matrix.uuid,
+        battery.uuid,
+      ]);
     } else {
       bleno.stopAdvertising();
     }
