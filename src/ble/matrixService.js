@@ -42,10 +42,13 @@ module.exports = (setMatrix) => {
           setMatrix(matrix);
           callback(Characteristic.RESULT_SUCCESS);
         },
-        onSubscribe: (maxValueSize, updateValueCallback) =>
-          em.addListener('MATRIX_UPDATE', (matrix) =>
-            updateValueCallback(new Buffer(matrix))
-          ),
+        onSubscribe: (maxValueSize, updateValueCallback) => {
+          console.log('sub');
+          em.addListener('MATRIX_UPDATE', (matrix) => {
+            console.log('MATRIX_UPDATE', matrix);
+            updateValueCallback(new Buffer(matrix));
+          });
+        },
       }),
     ],
   };
