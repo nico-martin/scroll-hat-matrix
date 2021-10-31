@@ -3,7 +3,6 @@ const em = new events.EventEmitter();
 const scrollController = new (require('scroll-controller'))();
 const battery = require('./src/battery');
 const bluetoothService = require('./src/ble');
-require('dotenv').config();
 
 const init = async () => {
   await battery((values) => em.emit('BATTERY_UPDATE', values));
