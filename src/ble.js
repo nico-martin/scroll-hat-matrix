@@ -1,8 +1,6 @@
 require('dotenv').config();
 const name = process.env.BLENO_DEVICE_NAME || 'Scroll Hat Matrix';
 process.env['BLENO_DEVICE_NAME'] = name;
-console.log(name);
-console.log(process.env);
 
 const bleno = require('bleno');
 const deviceInfoService = require('./ble/deviceInfoService');
