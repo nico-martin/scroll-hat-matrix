@@ -1,5 +1,5 @@
-process.env['BLENO_DEVICE_NAME'] =
-  process.env.BLENO_DEVICE_NAME || 'Scroll Hat Matrix';
+const name = process.env.BLENO_DEVICE_NAME || 'Scroll Hat Matrix';
+process.env['BLENO_DEVICE_NAME'] = name;
 
 const bleno = require('bleno');
 const deviceInfoService = require('./ble/deviceInfoService');
@@ -13,11 +13,7 @@ const bluetoothService = async (onBatteryUpdate, setMatrix) => {
 
   bleno.on('stateChange', (state) => {
     if (state === 'poweredOn') {
-      bleno.startAdvertising('Scroll Hat Matrix', [
-        device.uuid,
-        matrix.uuid,
-        battery.uuid,
-      ]);
+      bleno.startAdvertising(name, [device.uuid, matrix.uuid, battery.uuid]);
     } else {
       bleno.stopAdvertising();
     }
