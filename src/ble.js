@@ -1,4 +1,5 @@
-process.env['BLENO_DEVICE_NAME'] = 'Scroll Hat Matrix';
+process.env['BLENO_DEVICE_NAME'] =
+  process.env.BLENO_DEVICE_NAME || 'Scroll Hat Matrix';
 
 const bleno = require('bleno');
 const deviceInfoService = require('./ble/deviceInfoService');
