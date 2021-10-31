@@ -19,6 +19,7 @@
   "dependencies": {
     "@nico-martin/ina219": "^1.0.1",
     "bleno": "^0.5.0",
+    "dotenv": "^10.0.0",
     "scroll-controller": "git+https://git@github.com/whatsim/scrollcontroller.git"
   },
   "devDependencies": {
